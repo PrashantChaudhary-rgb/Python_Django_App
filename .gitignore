@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django
+*.log
+db.sqlite3
+media/
+
+# Virtual Environment
+venv/
+env/
+
+# Local development settings
+*.env
+*.env.local
+*.env.*.local
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# macOS
+.DS_Store
+
+# Compiled Python files
+*.pyc
+
+# Compiled C extension
+*.so
+
+# Project-specific files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+
+# Compiled translations
+locale/
