@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to Your Dashboard, {{ user.status }} {{user.first_name}} </h1>
+
+    <h2>User Details:</h2>
+    <ul>
+        <li><strong>First Name:</strong> {{ user.first_name }}</li>
+        <li><strong>Last Name:</strong> {{ user.last_name }}</li>
+        <li><strong>Email:</strong> {{ user.email }}</li>
+       
+    </ul>
+
+    {% if user.status == 'patient' %}
+        <h2>Patient Details:</h2>
+        <ul>
+            <li><strong>Address Line 1:</strong> {{ user.address_line1 }}</li>
+            <li><strong>City:</strong> {{ user.city }}</li>
+            <li><strong>State:</strong> {{ user.state }}</li>
+            <li><strong>Pincode:</strong> {{ user.pincode }}</li>
+            
+        </ul>
+    {% endif %}
+
+    {% if user.status == 'doctor' %}
+        <h2>Doctor Details:</h2>
+        <li><strong>Address Line 1:</strong> {{ user.address_line1 }}</li>
+            <li><strong>City:</strong> {{ user.city }}</li>
+            <li><strong>State:</strong> {{ user.state }}</li>
+            <li><strong>Pincode:</strong> {{ user.pincode }}</li>
+        
+    {% endif %}
+
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>
