@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-(r-j^a*&a^c+#m8gp!$p^d^v$vcob=yfx%q$pq@fdoafzxak01
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://django-app-frfe.onrender.com/"]
 # settings.py
 AUTH_USER_MODEL = 'user.CustomUser'
 # settings.py
