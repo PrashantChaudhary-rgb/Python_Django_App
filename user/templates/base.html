@@ -25,8 +25,12 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'logout' %}">Logout</a>
             </li>
-            
-            </li>   
+
+          {% if user.is_authenticated and user.status == 'doctor' %}
+          <li class="nav-item">
+          <a href="{% url 'create_blog' %}" class=" nav-link  align-items-end" style="border: solid grey; color : black ; border-radius: 20px;">Create Blog</a>
+          </li>
+          {% endif %}
         </div>
       </nav>
 <div class="container mt-4">
