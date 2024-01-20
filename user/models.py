@@ -1,4 +1,3 @@
-
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import BaseUserManager
@@ -39,3 +38,33 @@ class CustomUser(AbstractUser):
 
 CustomUser._meta.get_field('groups').related_name = 'custom_user_groups'
 CustomUser._meta.get_field('user_permissions').related_name = 'customuser_user_permissions'
+
+
+class BlogCategory(models.Model):
+    # CATEGORY_CHOICES = [
+    #     ('Mental Health', 'Mental Health'),
+    #     ('Heart Disease', 'Heart Disease'),
+    #     ('Covid19', 'Covid19'),
+    #     ('Immunization', 'Immunization'),
+    # ]
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Blog(models.Model):
+    title = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='blog_images', blank=True)
+    category = models.ForeignKey(BlogCategory, on_delete=models.CASCADE)
+    summary = models.TextField()
+    content = models.TextField()
+    is_draft = models.BooleanField(default=False)
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def truncated_summary(self):
+        words = self.summary.split()[:15]
+        return ' '.join(words) + ('...' if len(words) < len(self.summary.split()) else '')
+
+    def __str__(self):
+        return self.title

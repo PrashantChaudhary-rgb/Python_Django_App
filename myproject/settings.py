@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-(r-j^a*&a^c+#m8gp!$p^d^v$vcob=yfx%q$pq@fdoafzxak01
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-app-frfe.onrender.com']
+ALLOWED_HOSTS = ['django-app-frfe.onrender.com', '127.0.0.1']
 # settings.py
 AUTH_USER_MODEL = 'user.CustomUser'
 # settings.py
@@ -38,6 +38,8 @@ LOGOUT_REDIRECT_URL = '/'
 
 
 # Application definition
+
+
 
 INSTALLED_APPS = [
     'user.apps.UserConfig',
@@ -86,10 +88,12 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-DATABASES = {
-	"default": dj_database_url.parse("postgres://banaoproject_user:n8cC17x0H4CbpSdXXPhK7Pns8uychOVf@dpg-cmegc3mn7f5s73fr578g-a.singapore-postgres.render.com/banaoproject")
-}
+#https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+# DATABASES = {
+# 	"default": dj_database_url.parse("postgres://banaoproject_9mg6_user:4J9mvmTGzyD2IoU0YYcycDGQJZ7mtP7p@dpg-cml7om2cn0vc739ocgv0-a.oregon-postgres.render.com/banaoproject_9mg6")
+# }
+
+
 
 
 
@@ -98,18 +102,6 @@ DATABASES = {
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
 ]
 
 
@@ -134,3 +126,31 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bwt4fsgl4clpqffa0xm0',
+        'USER': 'unoucurinoyslwy1',
+        'PASSWORD': 'O9ldeIBqj3C9qEq3FE9m',
+        'HOST': 'bwt4fsgl4clpqffa0xm0-mysql.services.clever-cloud.com',  # Set to 'localhost' if running locally
+        'PORT': '3306',  # Set to '3306' by default for MySQL
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+    }
+}
