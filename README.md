@@ -2,9 +2,6 @@
 ## Live Link - https://django-app-frfe.onrender.com/
 
 
-
-# Your Project Name
-
 This is a Django project that demonstrates the usage of a custom user model , that has 2 types of users 1. Dcotor 2. Patient with additional fields. It also allows doctors to post blogs and readers to read them.
 
 ## Features
@@ -70,9 +67,8 @@ This is a Django project that demonstrates the usage of a custom user model , th
 
 ## How to Run
 
-# Example commands to run the project
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
+pip install -r requirements.txt <br>
+python manage.py migrate <br>
+python manage.py runserver <br>
 
 
