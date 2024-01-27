@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser, Blog, BlogCategory
+from .models import CustomUser, Blog, BlogCategory, Appointment
 
 class SignUpForm(UserCreationForm):
     class Meta:
@@ -48,3 +48,8 @@ class BlogCategoryForm(forms.ModelForm):
 
 #     def __init__(self, *args, **kwargs):
 #         super(BlogForm, self).__init__(*args, **kwargs)
+
+class AppointmentForm(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        fields = ['speciality', 'date', 'start_time']

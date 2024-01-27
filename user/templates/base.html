@@ -31,6 +31,15 @@
           <a href="{% url 'create_blog' %}" class=" nav-link  align-items-end" style="border: solid grey; color : black ; border-radius: 20px;">Create Blog</a>
           </li>
           {% endif %}
+
+          {% if user.is_authenticated and user.status == 'patient' %}
+          <li class="nav-item">
+            <a href="{% url 'doctor-list' %}" class=" nav-link  align-items-end" style="border: solid blue; color : black ; border-radius: 20px;">Book Appointment</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'appointment' %}" class=" nav-link  align-items-end" style="border: solid blue; color : black ; border-radius: 20px;">My Appointments</a>
+              </li>
+          {% endif %}
         </div>
       </nav>
 <div class="container mt-4">

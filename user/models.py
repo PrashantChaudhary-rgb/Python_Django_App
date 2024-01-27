@@ -4,7 +4,7 @@ from django.contrib.auth.models import BaseUserManager
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, username, email, password=None, **extra_fields):
+    def create_user(self, username, email, password, **extra_fields):
         """
         Create and return a regular user with an email and password.
         """
@@ -15,12 +15,27 @@ class CustomUserManager(BaseUserManager):
         # Add custom password validation checks
         if len(password) < 8:
             raise ValueError('Password must be at least 8 characters long')
-        if password != confirm_password:
-            raise ValueError('Passwords do not match')
+        # if password != confirm_password:
+        #     raise ValueError('Passwords do not match')
         user = self.model(username=username, email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
+
+    
+    def create_superuser(self, username, email, password, **extra_fields):
+        """
+        Create and save a SuperUser with the given email and password.
+        """
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault("is_active", True)
+
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError(_("Superuser must have is_staff=True."))
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError(_("Superuser must have is_superuser=True."))
+        return self.create_user(username, email, password, **extra_fields)
 
 # Create your models here.
 class CustomUser(AbstractUser):
@@ -28,7 +43,7 @@ class CustomUser(AbstractUser):
         ('patient', 'Patient'),
         ('doctor', 'Doctor'))
     status = models.CharField(max_length=10, choices=USER_CHOICES)
-    profile_picture = models.ImageField(upload_to='profile_pics', blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', default='profile_pics/default.jpg')
     address_line1 = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
@@ -68,3 +83,10 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+class Appointment(models.Model):
+    doctor = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='doctor')
+    patient = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='patient')
+    date = models.DateField()
+    start_time = models.TimeField()
+    speciality = models.CharField(max_length=500)

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for appointment in appointments %}
+    <div class="card m-3">
+        <h4 class="card-title p-2">You have an appointment with Dr. {{ appointment.doctor.username }}</h4>
+        <div class="card-body">
+            <ul>
+                <li>Date - {{ appointment.date }}</li>
+                <li>Time - {{ appointment.start_time }}</li>
+                <li>Duration - 45 minutes</li>
+            </ul>
+  
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
